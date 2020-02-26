@@ -84,16 +84,15 @@ function zombieMove() {
   if (zombieXPosition < -150) {
     zombieXPosition = 1200;
     divZombie.style.left = `${zombieXPosition}px`;
-    clearInterval(zombieInterval);
   }
 }
-const zombieTimeout = randomIntFromInterval(3000, 25000);
+
+const zombieTimeout = randomIntFromInterval(3000, 5000);
 setTimeout(zombieInterval, zombieTimeout);
 
 function zombieInterval() {
-  const zombieInterval = setInterval(zombieMove, 10);
+  setInterval(zombieMove, 10);
 }
-
 function randomIntFromInterval(min, max) {
   //
   return Math.floor(Math.random() * (max - min + 1) + min);
