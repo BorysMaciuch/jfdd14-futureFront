@@ -4,6 +4,8 @@
   padding: 0;
 }
 
+
+
 .gameContainer {
   width: 1200px;
   height: 675px;
@@ -20,6 +22,29 @@
   /* animation: scrollGood 2s linear infinite; */
   transform: scale(1);
 }
+
+.score {
+  position: absolute;
+  top: 110px;
+  left: 220px;
+  z-index: 10;
+  font-size: 45px;
+  color: darkviolet;
+  font-family: myFirstFont;
+  src: url(sansation_bold.woff);
+  font-weight: bold;
+
+}
+
+.life {
+  position: absolute;
+  display: flex;
+  width: 30px;
+  height:  20px;
+  top: 120px;
+  right: 220px;
+  z-index: 10;
+  }
 
 /* ****************** BACKGROUND *********************** */
 

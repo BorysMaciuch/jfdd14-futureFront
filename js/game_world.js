@@ -4,7 +4,13 @@ const zombie = document.querySelector('.zombieRun')
 const hero = document.querySelector('.heroRun')
 const divZombie = document.querySelector('.zombieContainer')
 const divHero = document.querySelector('.heroContainer')
+const score = document.querySelector('.score')
+const life = document.querySelector('life')
 divZombie.style.left = '500px'
+
+setTimeout(() => { 
+    document.getElementById('life').style.visibility = "hidden";  
+}, 2000);
 
 let zombieXPosition = 1200;
 let zombie3 = divZombie.getBoundingClientRect();
@@ -269,3 +275,15 @@ document.addEventListener('keydown', function (e) {
 //         }
 
 // }, 100);
+
+
+
+// var score = document.querySelectorAll('gameContainer');
+
+// function drawScore() {
+//     ctx.font = "16px Arial";
+//     ctx.fillStyle = "0095DD";
+//     ctx.fillText("Score: "+score, 8, 20);
+// }
+
+// drawScore();

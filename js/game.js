@@ -211,3 +211,5 @@ if(e.key == 'b') {
     // }
 
 
+var score = 0;
+
