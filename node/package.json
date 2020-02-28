@@ -1,0 +1,16 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "example-node.js",
+  "scripts": {
+    "start": "node example-node.js",
+    "clear": "killall -9 node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "create-react-app": "^3.4.0"
+  }
+}

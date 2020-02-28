@@ -4,6 +4,7 @@ const zombie = document.querySelector('.zombieRun')
 const hero = document.querySelector('.heroRun')
 const divZombie = document.querySelector('.zombieContainer')
 const divHero = document.querySelector('.heroContainer')
+const divPenguin = document.querySelector('.penguinContainer')
 divZombie.style.left = '500px'
 
 let zombieXPosition = 1200;
@@ -20,14 +21,16 @@ const jump = function () {
     let metrNaPix = 19.2; //wspolczynik dlugosci obrazu dla 1460
 
 
+
     let speed = 100 * metrNaPix; // 30 meters per second or 108 km/hour -- quite fast ...
     let angle = 90 * Math.PI / 180;  // 30 degree angle, moved to radians.
-
     let speed_x = speed * Math.cos(angle);
     let speed_y = speed * Math.sin(angle);  // now you have initial direction vector
-
     let x_coord = 200; //pzycja hero
     let y_coord = 445//dla top 562;
+
+
+
 
     const fps = 60;
     let time_step = 1.0 / fps;    // every frame...
@@ -71,24 +74,19 @@ const jump = function () {
             }
             zombie3 = divZombie.getBoundingClientRect();
             checkCollision(zombie3, hero3)
-            /* if(checkCollision(hero3 ,zombie3)) {
-                console.log(hero3.right, zombie3.left)
-                console.log("kolizja");
-              } else {
-                console.log("nie kolicja");
-            } */
-            
+
+
             divZombie.style.left =`${zombieX}px`
             zombieX -= 10
             console.log(zombieX)
-            
 
 
         }
     }, 1000 / fps);
-
-
 }
+
+
+
 document.addEventListener('keypress', function (e) {
     if (e.key == 'g') {
         console.log(e)
@@ -152,14 +150,23 @@ function shot() {
     const background = document.querySelectorAll(".back")
     const bulletDiv = document.createElement('div');
     const heroPos = divHero.getBoundingClientRect();
+
     world.append(bulletDiv)
     bulletDiv.classList.add("bulletContainerHero");
     bulletDiv.innerHTML = '<div class="bulletHero"></div>';
     bulletDiv.style.top = `${parseInt(heroPos.top) - 23}px`;
     // bulletDiv.style.left = `${parseInt(heroPos.left)}px`;
 
+    // const bullets = [...document.querySelectorAll(".bulletContainerHero")];
+    // bullets.forEach(element => {console.log(element.getBoundingClientRect().left, "bullet left");});
+    // bullets.forEach(element => {
+    //     if(parseInt(element.getBoundingClientRect().left) > 1556) {element.style.display = 'none';
+    //     console.log(element, "check display")}
+    // });
+
     if (parseInt(heroPos.top) > 558) {
         hero.classList.add("heroStandingShooting");
+        // hero.classList.add("heroDie"); die tryiing
         setTimeout(function () {
             background.forEach(element => { element.classList.add("paused") });
         }, 200);
@@ -173,7 +180,7 @@ function shot() {
         setTimeout(function () { hero.classList.remove("heroFlyingShooting") }, 1000);
     }
     console.log(divHero.getBoundingClientRect());
-    console.log(parseInt(heroPos.top), "hero position whilae shooting");
+    console.log(parseInt(heroPos.top), "hero position while shooting");
 }
 
 
@@ -234,7 +241,121 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+// COMPONENT USUWAJACY WSZYTKO POZA PLANSZA
 
+// const bullets = [...document.querySelectorAll(".bulletContainerHero")];
+
+
+// const divsOutOfGameContainer = [...document.querySelectorAll("div")];
+// divsOutOfGameContainer.forEach(element => {console.log(element.getBoundingClientRect().left, "bullet left");});
+// const removeDivs = divsOutOfGameContainer.forEach(element => {
+//     if(parseInt(element.getBoundingClientRect().left) > 1560
+//     || parseInt(element.getBoundingClientRect().right) < 364) {element.style.display = 'none';
+//     console.log(element, "check display")}
+// });
+
+
+
+
+
+
+const penguinJump = function () {
+    console.log("penguinJump");
+
+    const penguinContainer = document.querySelector(".penguinContainer");
+
+    const gravity = 15;
+    let metrNaPix = 19.2;
+    let penguinStartX = parseInt(penguinContainer.getBoundingClientRect().left);
+    let penguinStartY = parseInt(penguinContainer.getBoundingClientRect().top);
+    let x_coord = penguinStartX; //pozycja penguin
+    let y_coord = 495 //penguinStartY - 101;//penguinStartY;//445//dla top 562;
+
+    let speed = 110 * metrNaPix; // 30 meters per second or 108 km/hour -- quite fast ...
+    let angle = 100 * Math.PI / 180;  // 30 degree angle, moved to radians.
+    let speed_x = speed * Math.cos(angle);
+    let speed_y = speed * Math.sin(angle);  // now you have initial direction vector
+
+
+    const fps = 60;
+    let time_step = 1.0 / fps;    // every frame...
+
+
+    setInterval(function () {
+        // console.log(penguinStartY - 101,"ping - 101")
+        // console.log(penguinStartY - 100, "pingwin Y przed if")
+
+
+        // if (y_coord < penguinStartY-100 && x_coord > 350)
+        if (y_coord < 496 && x_coord > 350){
+            console.log(penguinStartY, "pingwin Y")
+            x_coord -= speed_x * time_step //* metrNaPix;
+            y_coord -= speed_y * time_step //* metrNaPix;
+
+            //console.log(x_coord, y_coord, speed_x, speed_y);
+            speed_y -= gravity * time_step * metrNaPix * metrNaPix;
+            //   let hero = document.querySelector("#hero");
+            penguinContainer.style.top = `${y_coord}px`;
+            penguinContainer.style.left = `${x_coord}px`;
+
+
+            speed_x *= 0.99;
+            speed_y *= 0.99;
+        }
+    }, 1000 / fps);
+}
+
+
+
+
+
+
+
+function shotPenguin() {
+
+    console.log("shot penguin");
+    const world = document.querySelector(".gameContainer");
+    const hero = document.querySelector("#penguin");
+    const gameContainer = document.querySelector(".gameContainer")
+    const containerLeft = gameContainer.getBoundingClientRect();
+    const bulletDiv = document.createElement('div');
+    const heroPos = divPenguin.getBoundingClientRect();
+
+    world.append(bulletDiv)
+    bulletDiv.classList.add("bulletContainerPenguin");
+    bulletDiv.innerHTML = '<div class="bulletPenguin"></div>';
+    bulletDiv.style.top = `${parseInt(heroPos.top)-50}px`;
+    // bulletDiv.style.left = `${parseInt(heroPos.left)-480}px`;
+    bulletDiv.style.left = `${parseInt(heroPos.left) - containerLeft.left - 130}px`;
+    //130px od gameContainer.left
+    console.log(bulletDiv.style.left, "bullet style left")
+    // if (parseInt(heroPos.top) > 558) {
+    //     hero.classList.add("heroStandingShooting");
+    //     // hero.classList.add("heroDie"); die tryiing
+    //     setTimeout(function () {
+    //         background.forEach(element => { element.classList.add("paused") });
+    //     }, 200);
+    //     setTimeout(function () {
+    //         hero.classList.remove("heroStandingShooting")
+    //         background.forEach(element => { element.classList.remove("paused") });
+    //     }, 1000);
+    // }
+    // if (parseInt(heroPos.top) < 560) {
+    //     hero.classList.add("heroFlyingShooting");
+    //     setTimeout(function () { hero.classList.remove("heroFlyingShooting") }, 1000);
+    // }
+    console.log(divHero.getBoundingClientRect());
+    console.log(parseInt(heroPos.top), "penguin TOP position while shooting");
+    console.log(parseInt(heroPos.left), "penguin LEFT position while shooting");
+}
+
+
+document.addEventListener('keydown', function (e) {
+    if (e.key == 'p') {
+        penguinJump();
+        shotPenguin();
+    }
+});
 // document.addEventListener('keydown', function (e) {
 //     if (e.key == 'l') {
 //         console.log("shoot");
@@ -249,14 +370,6 @@ document.addEventListener('keydown', function (e) {
 //         }, 1000);
 //     }
 // });
-
-
-
-
-
-
-
-
 
 //     setInterval(function(){
 //         console.log("2 interwal");
