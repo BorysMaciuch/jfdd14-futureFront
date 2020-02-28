@@ -8,9 +8,36 @@ const score = document.querySelector('.score')
 const life = document.querySelector('life')
 divZombie.style.left = '500px'
 
-setTimeout(() => { 
-    document.getElementById('life').style.visibility = "hidden";  
+var negativeHit = true
+// console.log(document.getElementsByClassName('life').className)
+
+
+
+function lifeRemover() {
+    // var heartCount = document.getElementByClassName(`.lifeSingle`);
+    // console.log(document.getElementsByClassName('lifeSingle')[0].classList.toggle("lifeSingleHidden"))
+    // console.log(document.getElementsByClassName('lifeSingle').className)
+
+    if (negativeHit == true && document.getElementsByClassName('lifeSingle')[0].classList ==  "lifeSingle") {
+        console.log(document.getElementsByClassName('lifeSingle')[0].classList.toggle("lifeSingleHidden"));
+    
+
+        console.log('catch life container')
+        
+    } else {
+        console.log('Czemu nie dziala')
+    }
+    
+}
+
+
+// setTimeout(() => { 
+//     lifeRemover();  
+// }, 2000);
+setInterval(() => {
+    lifeRemover();
 }, 2000);
+
 
 let zombieXPosition = 1200;
 let zombie3 = divZombie.getBoundingClientRect();

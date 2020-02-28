@@ -46,6 +46,14 @@
   z-index: 10;
   }
 
+  .lifeSingle {
+  display: block;
+  }
+  
+  .lifeSingleHidden {
+    display: none;
+  }
+
 /* ****************** BACKGROUND *********************** */
 
 .sky {
