@@ -10,6 +10,7 @@ startGame.addEventListener("click", function() {
   setTimeout(addZombieMoveClass1, 4000);
   setTimeout(addZombieMoveClass2, 7000);
 
+
   setTimeout(function() {
     penguinJump();
   }, 13000);
@@ -288,8 +289,8 @@ function outOfMap() {
   divsOutOfGameContainer.forEach(element => {});
   const removeDivs = divsOutOfGameContainer.forEach(element => {
     if (
-      parseInt(element.getBoundingClientRect().left) > 1560 ||
-      parseInt(element.getBoundingClientRect().right) < 364
+      parseInt(element.getBoundingClientRect().left) > 1400 ||
+      parseInt(element.getBoundingClientRect().right) < 200
     ) {
       element.style.display = "none";
     }
@@ -328,7 +329,10 @@ const coinCreate = () => {
 
 setTimeout(function () {coinCreate();}, 8000);
 setTimeout(function () {coinCreate();}, 10000);
-setTimeout(function () {coinCreate();}, 15000);
+setTimeout(function () {
+  coinCreate();
+  coinCreate();
+}, 15000);
 setTimeout(function () {coinCreate();}, 20000);
 
 
@@ -391,6 +395,7 @@ function shotPenguin() {
   const containerLeft = gameContainer.getBoundingClientRect();
   const bulletDiv = document.createElement("div");
   const heroPos = hero.getBoundingClientRect();
+  if( penguinContainer.style.display == "block"){
   world.append(bulletDiv);
   bulletDiv.classList.add("bulletContainerPenguin");
   bulletDiv.innerHTML = `<div class="bulletPenguin">
@@ -402,6 +407,7 @@ function shotPenguin() {
   bulletDiv.style.left = `${parseInt(heroPos.left) -
     containerLeft.left -
     130}px`;
+  }
 }
 document.addEventListener("keydown", function(e) {
   if (e.key == "p") {
