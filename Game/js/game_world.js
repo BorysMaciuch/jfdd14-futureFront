@@ -187,10 +187,12 @@ const jump = function () {
       speed_x *= 0.99;
       speed_y *= 0.99;
       if (parseInt(y_coord) > 440) {
-        hero.classList.remove("heroFlying");
-        hero.innerHTML -= `<audio autoplay>
-        <source src="/Game/audio/jetpack2.wav" type="audio/mpeg">
-      </audio>`;
+        // hero.classList.remove("heroFlying");
+        divHero.innerHTML = `<div class="heroRun" id="hero"></div>`
+
+        //   hero.innerHTML -= `<audio autoplay>
+        //   <source src="/Game/audio/jetpack2.wav" type="audio/mpeg">
+        // </audio>`;
         //     hero.innerHTML += `<audio autoplay>
         //   <source src="/Game/audio/run.wav" type="audio/mpeg">
         // </audio>`;
@@ -270,13 +272,38 @@ document.addEventListener("keydown", function (e) {
 });
 
 // funkcja na pojawianie się monet w różnej pozycji
-function coinSec(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+
+// function coinSec(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+
+// const coin1 = document.querySelector(".giftContainer");
+
+// coin1.style.top = `${coinSec(50, 520)}px`;
+
+// **********coin create*********
+
+const coinCreate = () => {
+  const giftDiv = document.createElement("div");
+  giftDiv.classList.add("giftContainer", "back");
+  giftDiv.innerHTML = `<div class="gift"></div>`;
+
+  coinSec = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  giftDiv.style.top = `${coinSec(50, 520)}px`;
+  world.append(giftDiv);
 }
 
-const coin1 = document.querySelector(".giftContainer");
+setTimeout(function () {coinCreate();}, 8000);
+setTimeout(function () {coinCreate();}, 10000);
+setTimeout(function () {coinCreate();}, 15000);
+setTimeout(function () {coinCreate();}, 20000);
 
-coin1.style.top = `${coinSec(50, 520)}px`;
+
+
+
+
 
 const penguinJump = function () {
   // penguin.classList.add("penguinJumpShooting");
@@ -372,16 +399,16 @@ document.addEventListener("keydown", function (e) {
     shotPenguin();
   }
 });
-/*
-setTimeout(function() {
+
+setTimeout(function () {
   penguinJump();
 }, 3000);
-setTimeout(function() {
+setTimeout(function () {
   shotPenguin();
 }, 2000);
-setTimeout(function() {
+setTimeout(function () {
   shotPenguin();
 }, 3500);
-setTimeout(function() {
+setTimeout(function () {
   shotPenguin();
-}, 4000); */
+}, 4000);

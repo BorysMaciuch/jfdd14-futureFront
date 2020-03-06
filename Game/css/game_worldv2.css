@@ -16,8 +16,9 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: 25px;
   background-color: rgb(104, 94, 94);
-  border: black 1px solid;
+  /* border: black 1px solid; */
   width: 1000px;
   height: 700px;
   margin-top: -350px;
@@ -26,6 +27,7 @@ body {
   font-size: 35px;
   padding: 5vh;
   text-align: justify;
+
 }
 
 .buttonStart {
@@ -46,7 +48,7 @@ body {
   text-shadow: -1px -1px black, 1px 1px white;
   color: gray;
   border-radius: 7px;
-  box-shadow: 0 0.2em gray;
+
   cursor: pointer;
 }
 
@@ -54,8 +56,11 @@ body {
 .frame {
   display: block;
   position: absolute;
+  /* top: -15px;
+  left: -70px; */
   top: -15px;
-  left: -105px;
+  left: 50%;
+  margin-left: -960px;
   width: 1920px;
   height: 900px;
   background: url("/img/game/border_gray_1920.png");
@@ -74,9 +79,12 @@ body {
   height: 675px;
   position: absolute;
   top: 100px !important;
-  left: 15vw;
+  /* left: 15vw; */
+  left: 50%;
+  margin-left: -600px;
   border: 1px solid;
   transform: scale(1);
+  border: solid 5px;
 }
 
 
@@ -107,8 +115,8 @@ body {
   box-shadow: 0 0.2em gray;
   cursor: pointer;
   z-index: 19;
-
-  display: none;
+display: none;
+ 
 }
 
 .gameEnd p {
