@@ -36,7 +36,9 @@ body {
   justify-content: center;
 }
 
-#startGame, #backToGame, #backToSite {
+#startGame,
+#backToGame,
+#backToSite {
   width: 300px;
   text-align: center;
   font-family: "Orbitron", sans-serif;
@@ -51,7 +53,6 @@ body {
 
   cursor: pointer;
 }
-
 
 .frame {
   display: block;
