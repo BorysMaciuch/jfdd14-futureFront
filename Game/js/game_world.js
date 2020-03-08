@@ -1,5 +1,6 @@
 import { penguinJump } from "./penguin.js";
 import { shotPenguin } from "./penguin.js";
+
 //consts + query selectors
 const startGame = document.querySelector("#startGame");
 const start = document.querySelector(".start");
@@ -113,6 +114,25 @@ const engine = setInterval(function() {
   const penguinBullets = [
     ...document.querySelectorAll(".bulletContainerPenguin")
   ];
+
+
+  const getFromLocalStorege = function () {
+    return JSON.parse(localStorage.getItem("highScores")) || [];
+  }
+  
+  const saveToLocalStorage = function () {
+    localStorage.setItem("highScores", JSON.stringify(highScoresArr));
+  }
+  
+ const highScoresArr = ["currentPlayer",...getFromLocalStorege()];
+ const currentPlayerHighScore = highScoresArr.forEach(el => {
+   el.name == highScoresArr[0];
+   return el.score;
+ });
+
+ console.log(currentPlayerHighScore);
+
+ 
   const gifts = [...document.querySelectorAll(".giftContainer")];
   if (lifeCheck == 3) {
     if (JSON.parse(localStorage.getItem("score")) < score) {
@@ -144,6 +164,8 @@ const engine = setInterval(function() {
         checkCollision(el, divHero);
       });
     }
+
+
     //zombie/penguin collision
 
     checkCollision(divHero, divZombie);

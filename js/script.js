@@ -102,6 +102,18 @@ const gameBoxPlay = document.querySelector("#gameBoxPlay");
 const gameBoxClose = document.querySelector("#gameBoxClose");
 const emailRegex = /\S+@\S+\.\S+/;
 
+
+const getFromLocalStorege = function () {
+  return JSON.parse(localStorage.getItem("highScores")) || [];
+}
+
+export const saveToLocalStorage = function () {
+  localStorage.setItem("highScores", JSON.stringify(highScoresArr));
+}
+
+export const highScoresArr = ["currentPlayer",...getFromLocalStorege()];
+
+
 gameBoxPlay.addEventListener("click", function() {
   greyBackground.style.display = "none";
   game.style.display = "none";
@@ -114,10 +126,17 @@ premiereButton.addEventListener("click", function() {
   } else if (!emailRegex.test(premiereInput.value)) {
     alert("Prosze wpisac prawidlowy adres email");
   } else {
+    highScoresArr[0] = premiereInput.value;
+    if(highScoresArr.filter((el) => el.email == premiereInput.value).length == 0){
+      highScoresArr.push({email:premiereInput.value, score: 0});
+      console.log(highScoresArr);}
+      saveToLocalStorage()
+
     greyBackground.style.display = "block";
     game.style.display = "flex";
   }
 });
+
 premiereButtonSmall.addEventListener("click", function() {
   let premiereInput = document.querySelector(".premiereEmailInputSmall");
   if (premiereInput.value == "") {
@@ -125,6 +144,11 @@ premiereButtonSmall.addEventListener("click", function() {
   } else if (!emailRegex.test(premiereInput.value)) {
     alert("Prosze wpisac prawidlowy adres email");
   } else {
+    if(highScoresArr.filter((el) => el.email == premiereInput.value).length == 0){
+      highScoresArr.push({email:premiereInput.value, score:0});
+      console.log(highScoresArr);}
+      saveToLocalStorage()
+
     greyBackground.style.display = "block";
     game.style.display = "flex";
   }
