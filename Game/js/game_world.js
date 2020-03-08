@@ -116,21 +116,21 @@ const engine = setInterval(function() {
   ];
 
 
-  const getFromLocalStorege = function () {
-    return JSON.parse(localStorage.getItem("highScores")) || [];
-  }
-  
-  const saveToLocalStorage = function () {
-    localStorage.setItem("highScores", JSON.stringify(highScoresArr));
-  }
-  
- const highScoresArr = ["currentPlayer",...getFromLocalStorege()];
- const currentPlayerHighScore = highScoresArr.forEach(el => {
-   el.name == highScoresArr[0];
-   return el.score;
- });
+//   const getFromLocalStorege = function () {
+//     return JSON.parse(localStorage.getItem("highScores")) || [];
+//   }
 
- console.log(currentPlayerHighScore);
+//   const saveToLocalStorage = function () {
+//     localStorage.setItem("highScores", JSON.stringify(highScoresArr));
+//   }
+
+//  const highScoresArr = ["currentPlayer",...getFromLocalStorege()];
+//  const currentPlayerHighScore = highScoresArr.forEach(el => {
+//    el.name == highScoresArr[0];
+//    return el.score;
+//  });
+
+//  console.log(currentPlayerHighScore);
 
  
   const gifts = [...document.querySelectorAll(".giftContainer")];
